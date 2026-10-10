@@ -1,0 +1,17 @@
+name: git-sim
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: initialcommit-com/git-sim/integrations/github-action@main
+        with:
+          package: "git+https://github.com/initialcommit-com/git-sim@main"
